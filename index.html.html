@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Lazzat</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{
+  --bg:#15110f; --card:#211a17; --card2:#2a211d; --text:#f3ead9; --muted:#a89a85;
+  --gold:#d4a95a; --gold-dark:#b98c3e; --line:#3a2e27; --danger:#e0675a; --cream:#f1e7d3;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{padding:0 16px 120px;max-width:560px;margin:0 auto}
+[hidden]{display:none!important}
+
+header{display:flex;align-items:center;gap:14px;padding:18px 0 12px}
+.logo{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--gold);flex:none}
+.logo-fallback{width:56px;height:56px;border-radius:50%;background:var(--gold);color:#1b1511;
+  display:flex;align-items:center;justify-content:center;font:700 22px Georgia,serif;flex:none}
+header h1{margin:0;font:700 26px Georgia,"Times New Roman",serif;letter-spacing:.5px;color:var(--gold)}
+header p{margin:2px 0 0;color:var(--muted);font-size:14px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 18px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+
+.card{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:16px;padding:12px;margin-bottom:12px}
+.pic{width:92px;flex:none;border-radius:12px;background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pic img{width:100%;height:132px;object-fit:contain;mix-blend-mode:multiply}
+.info{flex:1;min-width:0;display:flex;flex-direction:column}
+.info h2{margin:0;font:700 18px Georgia,"Times New Roman",serif}
+.vol{color:var(--gold);font-size:13px;margin-top:2px}
+.desc{margin:6px 0;color:var(--muted);font-size:13px;line-height:1.35}
+.price{font-size:13px;color:var(--text);line-height:1.4}
+.price span{color:var(--muted)}
+.step{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:10px}
+.step button{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card2);
+  color:var(--text);font-size:22px;line-height:1;cursor:pointer}
+.step button:active{background:var(--accent)}
+.step input{width:64px;height:40px;text-align:center;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg);color:var(--text);font-size:17px;font-weight:600}
+.line{min-height:18px;margin-top:6px;font-size:13px;color:var(--gold)}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(21,17,15,.96);border-top:1px solid var(--line);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));backdrop-filter:blur(8px)}
+.bar-in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.bar .sum{flex:1;min-width:0}
+#barTotal{font-weight:700;font-size:16px}
+#barHint{font-size:12.5px;color:var(--muted);margin-top:2px}
+#barHint.warn{color:var(--danger)}
+button.primary{border:0;border-radius:14px;background:var(--gold);color:#1b1511;font-weight:700;font-size:16px;
+  padding:14px 22px;cursor:pointer}
+button.primary:disabled{background:var(--card2);color:var(--muted);cursor:default}
+button.primary:not(:disabled):active{background:var(--gold-dark)}
+
+#view-checkout h1{font:700 22px Georgia,serif;color:var(--gold);margin:18px 0 12px}
+.summary{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:16px;font-size:14px}
+.summary .row{display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+.summary .row span:last-child{white-space:nowrap}
+.summary .total{border-top:1px solid var(--line);margin-top:6px;padding-top:8px;font-weight:700;font-size:16px}
+.summary .note{color:var(--muted);font-size:12.5px;margin-top:6px}
+label{display:block;margin-bottom:14px;font-size:13px;color:var(--muted)}
+label input,label textarea{display:block;width:100%;margin-top:6px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);
+  background:var(--card);color:var(--text);font-size:16px;font-family:inherit}
+label textarea{min-height:84px;resize:vertical}
+label input:focus,label textarea:focus{outline:none;border-color:var(--gold)}
+.err{display:none;color:var(--danger);font-size:12.5px;margin-top:5px}
+label.bad .err{display:block}
+label.bad input,label.bad textarea{border-color:var(--danger)}
+#submit{width:100%;margin-top:6px}
+#backLink{background:none;border:0;color:var(--muted);font-size:14px;padding:10px 0;cursor:pointer}
+</style>
+</head>
+<body>
+
+<section id="view-catalog">
+  <header>
+    <img class="logo" id="logo" src="img/logo.png" alt="Lazzat">
+    <div>
+      <h1>Lazzat</h1>
+      <p id="tagline"></p>
+    </div>
+  </header>
+  <div class="chips" id="chips"></div>
+  <div id="list"></div>
+  <div class="bar" id="bar">
+    <div class="bar-in">
+      <div class="sum"><div id="barTotal"></div><div id="barHint"></div></div>
+      <button class="primary" id="next" disabled></button>
+    </div>
+  </div>
+</section>
+
+<section id="view-checkout" hidden>
+  <button id="backLink"></button>
+  <h1 id="coTitle"></h1>
+  <div class="summary" id="coSummary"></div>
+  <label id="lName"><span id="tName"></span><input id="fName" autocomplete="name" maxlength="50"><div class="err" id="eName"></div></label>
+  <label id="lPhone"><span id="tPhone"></span><input id="fPhone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20"><div class="err" id="ePhone"></div></label>
+  <label id="lAddr"><span id="tAddr"></span><textarea id="fAddr" maxlength="300"></textarea><div class="err" id="eAddr"></div></label>
+  <button class="primary" id="submit"></button>
+</section>
+
+<script>
+const tg = window.Telegram && window.Telegram.WebApp;
+if (tg) {
+  tg.ready(); tg.expand();
+  try { tg.setHeaderColor('#15110f'); tg.setBackgroundColor('#15110f'); } catch (e) {}
+}
+const lang = new URLSearchParams(location.search).get('lang') === 'uz' ? 'uz' : 'ru';
+document.documentElement.lang = lang === 'uz' ? 'uz' : 'ru';
+
+const BLOCK = 12, MIN = 5, MAX = 10000;
+// ВАЖНО: цены здесь только для показа. Настоящие цены и сумму считает бот (словарь DRINKS в bot.py).
+// Если меняете цену, меняйте её и здесь, и в bot.py.
+const DRINKS = [
+  { id: 'anor',   name: 'Anor Lemonade',   price: 7301, color: '#7a1f2b', img: 'img/anor.jpg',
+    vol: { ru: '0,5 л',  uz: '0,5 l' },
+    desc: { ru: 'Лимонад с насыщенным вкусом граната.', uz: "To'yingan anor ta'mli limonad." } },
+  { id: 'joxori', name: "Jo'xori Lemonade", price: 8400, color: '#27407f', img: 'img/joxori.jpg',
+    vol: { ru: '0,45 л', uz: '0,45 l' },
+    desc: { ru: 'Необычный лимонад со вкусом сладкой кукурузы.', uz: "Shirin makkajo'xori ta'mli noodatiy limonad." } },
+  { id: 'moxito', name: 'Moxito Lemonade', price: 7301, color: '#2f6a2b', img: 'img/moxito.jpg',
+    vol: { ru: '0,5 л',  uz: '0,5 l' },
+    desc: { ru: 'Освежающий мохито с лаймом, мятой и клубникой.', uz: "Laym, yalpiz va qulupnay ta'mli sarin moxito." } },
+  { id: 'qovun',  name: 'Qovun Lemonade',  price: 7301, color: '#3f5a2a', img: 'img/qovun.jpg',
+    vol: { ru: '0,45 л', uz: '0,45 l' },
+    desc: { ru: 'Лимонад со вкусом сочной спелой дыни.', uz: "Shirali pishgan qovun ta'mli limonad." } },
+];
+
+const I18N = {
+  ru: {
+    tagline: 'Газированные лимонады', cur: 'сум',
+    chips: ['1 блок = <b>12 банок</b>', 'Минимум <b>5 блоков</b>', 'Доставка: <b>Ташкент, Юнусабад</b>', 'Оплата <b>при получении</b>'],
+    perCan: 'за банку', perBlock: 'Блок', blocksShort: 'бл.', cans: 'банок',
+    empty: 'Выберите напитки', next: 'Далее', need: n => `Ещё ${n} бл. до минимума`, ready: 'Можно оформлять',
+    coTitle: 'Оформление заявки', back: '← Назад к каталогу', total: 'Итого', payNote: 'Оплата при получении. Доставка: Ташкент, Юнусабад.',
+    name: 'Имя', phone: 'Телефон', addr: 'Адрес доставки (Ташкент, Юнусабад: улица, дом, ориентир)',
+    eName: 'Введите имя (от 2 до 50 символов)', ePhone: 'Введите номер, например +998 90 123 45 67',
+    eAddr: 'Укажите улицу, дом и ориентир', submit: 'Отправить заявку', test: 'Открыто вне Telegram. Данные заявки:'
+  },
+  uz: {
+    tagline: 'Gazli limonadlar', cur: "so'm",
+    chips: ['1 blok = <b>12 dona banka</b>', 'Minimal <b>5 blok</b>', 'Yetkazib berish: <b>Toshkent, Yunusobod</b>', "To'lov <b>qabul qilishda</b>"],
+    perCan: 'bankasi', perBlock: 'Blok', blocksShort: 'blok', cans: 'dona',
+    empty: 'Ichimliklarni tanlang', next: 'Davom etish', need: n => `Minimalgacha yana ${n} blok`, ready: 'Rasmiylashtirish mumkin',
+    coTitle: 'Buyurtmani rasmiylashtirish', back: '← Katalogga qaytish', total: 'Jami', payNote: "To'lov qabul qilishda. Yetkazib berish: Toshkent, Yunusobod.",
+    name: 'Ism', phone: 'Telefon', addr: "Yetkazib berish manzili (Toshkent, Yunusobod: ko'cha, uy, mo'ljal)",
+    eName: 'Ismni kiriting (2 dan 50 belgigacha)', ePhone: 'Raqamni kiriting, masalan +998 90 123 45 67',
+    eAddr: "Ko'cha, uy va mo'ljalni ko'rsating", submit: 'Buyurtmani yuborish', test: 'Telegramdan tashqarida ochilgan. Buyurtma:'
+  }
+};
+const t = I18N[lang];
+const $ = id => document.getElementById(id);
+const money = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ' + t.cur;
+const qty = Object.fromEntries(DRINKS.map(d => [d.id, 0]));
+const totalBlocks = () => DRINKS.reduce((s, d) => s + qty[d.id], 0);
+const totalSum = () => DRINKS.reduce((s, d) => s + qty[d.id] * BLOCK * d.price, 0);
+const haptic = () => { try { tg.HapticFeedback.impactOccurred('light'); } catch (e) {} };
+
+/* ---------- каталог ---------- */
+$('tagline').textContent = t.tagline;
+$('chips').innerHTML = t.chips.map(c => `<span class="chip">${c}</span>`).join('');
+$('next').textContent = t.next;
+$('logo').onerror = function () {
+  const f = document.createElement('div'); f.className = 'logo-fallback'; f.textContent = 'L';
+  this.replaceWith(f);
+};
+$('list').innerHTML = DRINKS.map(d => `
+  <article class="card" style="--accent:${d.color}">
+    <div class="pic"><img src="${d.img}" alt="${d.name}" onerror="this.style.display='none'"></div>
+    <div class="info">
+      <h2>${d.name}</h2>
+      <div class="vol">${d.vol[lang]}</div>
+      <p class="desc">${d.desc[lang]}</p>
+      <div class="price">${money(d.price)} <span>${t.perCan}</span><br>
+        <span>${t.perBlock} (${BLOCK}):</span> <b>${money(d.price * BLOCK)}</b></div>
+      <div class="step" data-id="${d.id}">
+        <button type="button" data-act="minus" aria-label="−">−</button>
+        <input inputmode="numeric" pattern="[0-9]*" value="0" aria-label="${t.blocksShort}">
+        <button type="button" data-act="plus" aria-label="+">+</button>
+      </div>
+      <div class="line" id="line-${d.id}"></div>
+    </div>
+  </article>`).join('');
+
+function update() {
+  DRINKS.forEach(d => {
+    const q = qty[d.id], inp = document.querySelector(`.step[data-id="${d.id}"] input`);
+    if (document.activeElement !== inp) inp.value = q;
+    $('line-' + d.id).textContent = q ? `${q} ${t.blocksShort} (${q * BLOCK} ${t.cans}) = ${money(q * BLOCK * d.price)}` : '';
+  });
+  const b = totalBlocks();
+  $('barTotal').textContent = b ? `${b} ${t.blocksShort} · ${money(totalSum())}` : t.empty;
+  const hint = $('barHint');
+  if (b === 0) { hint.textContent = ''; hint.className = ''; }
+  else if (b < MIN) { hint.textContent = t.need(MIN - b); hint.className = 'warn'; }
+  else { hint.textContent = t.ready; hint.className = ''; }
+  $('next').disabled = b < MIN;
+}
+
+$('list').addEventListener('click', e => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  const id = btn.parentElement.dataset.id;
+  qty[id] = Math.max(0, Math.min(MAX, qty[id] + (btn.dataset.act === 'plus' ? 1 : -1)));
+  haptic(); update();
+});
+$('list').addEventListener('input', e => {
+  if (e.target.tagName !== 'INPUT') return;
+  const id = e.target.parentElement.dataset.id;
+  qty[id] = Math.min(MAX, parseInt(e.target.value.replace(/\D/g, ''), 10) || 0);
+  update();
+});
+$('list').addEventListener('focusout', e => { if (e.target.tagName === 'INPUT') update(); });
+
+/* ---------- оформление ---------- */
+function show(view) {
+  $('view-catalog').hidden = view !== 'catalog';
+  $('view-checkout').hidden = view !== 'checkout';
+  if (tg) { try { view === 'checkout' ? tg.BackButton.show() : tg.BackButton.hide(); } catch (e) {} }
+  window.scrollTo(0, 0);
+}
+function openCheckout() {
+  $('coTitle').textContent = t.coTitle; $('backLink').textContent = t.back;
+  $('tName').textContent = t.name; $('tPhone').textContent = t.phone; $('tAddr').textContent = t.addr;
+  $('eName').textContent = t.eName; $('ePhone').textContent = t.ePhone; $('eAddr').textContent = t.eAddr;
+  $('submit').textContent = t.submit; $('submit').disabled = false;
+  const rows = DRINKS.filter(d => qty[d.id] > 0).map(d =>
+    `<div class="row"><span>${d.name} × ${qty[d.id]} ${t.blocksShort}</span><span>${money(qty[d.id] * BLOCK * d.price)}</span></div>`).join('');
+  $('coSummary').innerHTML = rows +
+    `<div class="row total"><span>${t.total}: ${totalBlocks()} ${t.blocksShort} (${totalBlocks() * BLOCK} ${t.cans})</span><span>${money(totalSum())}</span></div>
+     <div class="note">${t.payNote}</div>`;
+  if (!$('fName').value && tg && tg.initDataUnsafe && tg.initDataUnsafe.user) $('fName').value = tg.initDataUnsafe.user.first_name || '';
+  if (!$('fPhone').value) $('fPhone').value = '+998 ';
+  show('checkout');
+}
+$('next').addEventListener('click', () => { if (totalBlocks() >= MIN) openCheckout(); });
+$('backLink').addEventListener('click', () => show('catalog'));
+if (tg) { try { tg.BackButton.onClick(() => show('catalog')); } catch (e) {} }
+
+function normPhone(v) {
+  let d = v.replace(/\D/g, '');
+  if (d.length === 9) d = '998' + d;
+  return d.length === 12 && d.startsWith('998') ? '+' + d : null;
+}
+function flag(labelId, bad) { $(labelId).classList.toggle('bad', bad); return !bad; }
+
+$('submit').addEventListener('click', () => {
+  const name = $('fName').value.trim(), phone = normPhone($('fPhone').value), address = $('fAddr').value.trim();
+  const okName = flag('lName', name.length < 2 || name.length > 50);
+  const okPhone = flag('lPhone', !phone);
+  const okAddr = flag('lAddr', address.length < 8);
+  if (!(okName && okPhone && okAddr) || totalBlocks() < MIN) return;
+  const payload = {
+    items: DRINKS.filter(d => qty[d.id] > 0).map(d => ({ id: d.id, blocks: qty[d.id] })),
+    name, phone, address
+  };
+  $('submit').disabled = true;
+  if (tg && tg.initData) {
+    tg.sendData(JSON.stringify(payload));   // Telegram закроет приложение и передаст данные боту
+  } else {
+    alert(t.test + '\n' + JSON.stringify(payload, null, 2));
+    $('submit').disabled = false;
+  }
+});
+
+update();
+</script>
+</body>
+</html>
