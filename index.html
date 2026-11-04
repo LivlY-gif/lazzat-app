@@ -260,7 +260,8 @@ $('submit').addEventListener('click', () => {
     name, phone, address
   };
   $('submit').disabled = true;
-  if (tg && tg.initData) {
+  // Кнопка меню из клавиатуры не даёт initData, поэтому проверяем платформу, а не initData
+  if (tg && tg.platform && tg.platform !== 'unknown') {
     tg.sendData(JSON.stringify(payload));   // Telegram закроет приложение и передаст данные боту
   } else {
     alert(t.test + '\n' + JSON.stringify(payload, null, 2));
