@@ -141,7 +141,8 @@ const I18N = {
     coTitle: 'Оформление заявки', back: '← Назад к каталогу', total: 'Итого', payNote: 'Оплата при получении. Доставка: Ташкент, Юнусабад.',
     name: 'Имя', phone: 'Телефон', addr: 'Адрес доставки (Ташкент, Юнусабад: улица, дом, ориентир)',
     eName: 'Введите имя (от 2 до 50 символов)', ePhone: 'Введите номер, например +998 90 123 45 67',
-    eAddr: 'Укажите улицу, дом и ориентир', submit: 'Отправить заявку', test: 'Открыто вне Telegram. Данные заявки:'
+    eAddr: 'Укажите улицу, дом и ориентир', submit: 'Отправить заявку', test: 'Открыто вне Telegram. Данные заявки:',
+    useKb: 'Чтобы отправить заявку, закройте окно и нажмите кнопку «🛒 Заказать в приложении» в меню бота (если её нет, отправьте боту /start).'
   },
   uz: {
     tagline: 'Gazli limonadlar', cur: "so'm",
@@ -151,7 +152,8 @@ const I18N = {
     coTitle: 'Buyurtmani rasmiylashtirish', back: '← Katalogga qaytish', total: 'Jami', payNote: "To'lov qabul qilishda. Yetkazib berish: Toshkent, Yunusobod.",
     name: 'Ism', phone: 'Telefon', addr: "Yetkazib berish manzili (Toshkent, Yunusobod: ko'cha, uy, mo'ljal)",
     eName: 'Ismni kiriting (2 dan 50 belgigacha)', ePhone: 'Raqamni kiriting, masalan +998 90 123 45 67',
-    eAddr: "Ko'cha, uy va mo'ljalni ko'rsating", submit: 'Buyurtmani yuborish', test: 'Telegramdan tashqarida ochilgan. Buyurtma:'
+    eAddr: "Ko'cha, uy va mo'ljalni ko'rsating", submit: 'Buyurtmani yuborish', test: 'Telegramdan tashqarida ochilgan. Buyurtma:',
+    useKb: "Buyurtmani yuborish uchun oynani yoping va bot menyusidagi «🛒 Ilovada buyurtma» tugmasini bosing (u yo'q bo'lsa, botga /start yuboring)."
   }
 };
 const t = I18N[lang];
@@ -262,6 +264,12 @@ $('submit').addEventListener('click', () => {
   $('submit').disabled = true;
   // Кнопка меню из клавиатуры не даёт initData, поэтому проверяем платформу, а не initData
   if (tg && tg.platform && tg.platform !== 'unknown') {
+    if (tg.initData) {
+      // Запуск не кнопкой клавиатуры (например, кнопкой Open): sendData недоступен, заказ не дойдёт
+      alert(t.useKb);
+      $('submit').disabled = false;
+      return;
+    }
     tg.sendData(JSON.stringify(payload));   // Telegram закроет приложение и передаст данные боту
   } else {
     alert(t.test + '\n' + JSON.stringify(payload, null, 2));
