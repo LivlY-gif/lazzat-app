@@ -28,50 +28,61 @@ header p{margin:2px 0 0;color:var(--muted);font-size:14px}
 .lang button{background:var(--card);border:0;color:var(--muted);padding:8px 11px;font-size:13px;font-weight:600;cursor:pointer}
 .lang button.on{background:var(--gold);color:#1b1511}
 
-h2.sec{font:700 20px Georgia,"Times New Roman",serif;color:var(--gold);margin:28px 0 12px}
-.about{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px;
-  font-size:14.5px;line-height:1.5;color:var(--text)}
-.about p{margin:0 0 10px}.about p:last-child{margin:0}
+.welcome{margin:14px 0 18px;color:var(--muted);font-size:15px;line-height:1.45}
+
+.menu{display:grid;gap:12px}
+.tile{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--card);color:var(--text);
+  border:1px solid var(--line);border-radius:18px;padding:18px 16px;cursor:pointer;font-family:inherit}
+.tile:active{background:var(--card2);border-color:var(--gold)}
+.tile .ic{width:48px;height:48px;border-radius:14px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:24px;flex:none}
+.tile .tt{font:700 19px Georgia,"Times New Roman",serif}
+.tile .st{color:var(--muted);font-size:13px;margin-top:3px}
+.tile .ar{margin-left:auto;color:var(--gold);font-size:20px}
+.tile.main{border-color:var(--gold-dark)}
+
+.back{background:none;border:0;color:var(--gold);font-size:15px;padding:12px 0 0;cursor:pointer;font-family:inherit}
+h2.sec{font:700 24px Georgia,"Times New Roman",serif;color:var(--gold);margin:14px 0 14px}
+h3.sub{font:700 17px Georgia,serif;color:var(--gold);margin:24px 0 10px}
 
 .card{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);
-  border-radius:16px;padding:12px;margin-bottom:12px}
+  border-radius:16px;padding:12px;margin-bottom:12px;cursor:pointer}
+.card:active{background:var(--card2)}
 .pic{width:104px;flex:none;border-radius:12px;background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .pic img{width:100%;height:150px;object-fit:contain;mix-blend-mode:multiply}
 .info{flex:1;min-width:0}
 .info h3{margin:0;font:700 18px Georgia,"Times New Roman",serif}
 .vol{color:var(--gold);font-size:13px;margin-top:2px}
 .desc{margin:8px 0;color:var(--muted);font-size:13.5px;line-height:1.4}
-.price{font-size:13.5px;line-height:1.5}
-.price span{color:var(--muted)}
+.more{color:var(--gold);font-size:13px;margin-top:8px}
 
-.facts{display:grid;gap:10px}
-.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4}
+.hero{background:var(--cream);border-radius:20px;padding:18px;margin-top:8px;display:flex;justify-content:center;border-bottom:6px solid var(--accent)}
+.hero img{height:300px;max-width:100%;object-fit:contain;mix-blend-mode:multiply}
+.dname{font:700 26px Georgia,serif;margin:18px 0 2px}
+.long{font-size:15px;line-height:1.55;margin:12px 0}
+.pbox{display:flex;gap:10px;margin:14px 0}
+.pbox div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--muted)}
+.pbox b{display:block;color:var(--text);font-size:16px;margin-top:3px}
+
+.prow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.prow .n{flex:1;min-width:0}
+.prow .n b{font:700 16px Georgia,serif;display:block}
+.prow .n span{color:var(--gold);font-size:12.5px}
+.prow .p{text-align:right;font-size:13px;color:var(--muted);line-height:1.5}
+.prow .p b{color:var(--text);font-size:15px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;font-size:14.5px;line-height:1.55}
+.box p{margin:0 0 10px}.box p:last-child{margin:0}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4;margin-bottom:10px}
 .fact b{display:block;color:var(--gold);font-size:12.5px;font-weight:600;letter-spacing:.3px;margin-bottom:3px;text-transform:uppercase}
 
-.factory{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;font-size:14.5px;line-height:1.5}
-.factory .addr{font-weight:600;margin-bottom:12px}
-.btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{flex:1 1 140px;text-align:center;border:1px solid var(--line);background:var(--card2);color:var(--text);
-  border-radius:12px;padding:12px 14px;font-size:14.5px;font-weight:600}
+.btns{display:grid;gap:10px}
+.btn{display:block;width:100%;text-align:center;border:1px solid var(--line);background:var(--card2);color:var(--text);
+  border-radius:14px;padding:15px 14px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer}
 .btn:active{background:var(--gold);color:#1b1511}
-
+.btn.gold{background:var(--gold);color:#1b1511;border-color:var(--gold)}
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;background:var(--card)}
-
-.card{cursor:pointer}
-.card:active{background:var(--card2)}
-.more{color:var(--gold);font-size:13px;margin-top:8px}
-.tap{color:var(--muted);font-size:12.5px;margin:-4px 0 12px}
-#detail .hero{background:var(--cream);border-radius:20px;padding:18px;margin-top:8px;display:flex;justify-content:center;
-  border-bottom:6px solid var(--accent)}
-#detail .hero img{height:300px;max-width:100%;object-fit:contain;mix-blend-mode:multiply}
-#detail h2{font:700 26px Georgia,serif;margin:18px 0 2px}
-#detail .vol{font-size:14px}
-#detail .long{font-size:15px;line-height:1.55;margin:12px 0}
-#detail .pbox{display:flex;gap:10px;margin:14px 0}
-#detail .pbox div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--muted)}
-#detail .pbox b{display:block;color:var(--text);font-size:16px;margin-top:3px}
-.back{background:none;border:0;color:var(--gold);font-size:15px;padding:12px 0 0;cursor:pointer}
+.note{color:var(--muted);font-size:13.5px;line-height:1.45;margin:12px 0}
 </style>
 </head>
 <body>
@@ -82,97 +93,78 @@ h2.sec{font:700 20px Georgia,"Times New Roman",serif;color:var(--gold);margin:28
   <div class="lang"><button id="lru">RU</button><button id="luz">UZ</button></div>
 </header>
 
-<div id="home">
-<div class="about" id="about"></div>
-
-<h2 class="sec" id="hDrinks"></h2>
-<div id="list"></div>
-
-<h2 class="sec" id="hFactory"></h2>
-<div class="factory">
-  <div class="addr" id="fAddr"></div>
-  <div class="btns">
-    <a class="btn" id="mGoogle" target="_blank" rel="noopener"></a>
-    <a class="btn" id="mYandex" target="_blank" rel="noopener"></a>
-  </div>
-</div>
-
-<div id="galleryWrap" hidden>
-  <h2 class="sec" id="hPhotos"></h2>
-  <div class="gallery" id="gallery"></div>
-</div>
-
-<div id="contactsWrap" hidden>
-  <h2 class="sec" id="hContacts"></h2>
-  <div class="btns" id="contacts"></div>
-</div>
-
-</div>
-
-<div id="detail" hidden></div>
+<main id="view"></main>
 
 <script>
 /* =====================  НАСТРОЙКИ (меняйте здесь)  ===================== */
-// Контакты. Пустое значение = кнопка не показывается.
+// Контакты менеджера. Пустое значение = эта кнопка не показывается.
 const CONTACT = {
   phone:     '',   // например '+998901234567'
   telegram:  '',   // например '@lazzat_manager'
   instagram: ''    // например 'lazzat.uz' или полная ссылка
 };
-// Фото для раздела «Фото завода»: положите файлы в папку img и впишите имена, например ['factory1.jpg','factory2.jpg'].
-// Пока список пуст, раздел скрыт.
+// Фото для раздела «О нас»: положите файлы в папку img и впишите имена, например ['factory1.jpg','factory2.jpg'].
+// Пока список пуст, фото не показываются.
 const GALLERY = [];
-// Цены только для показа. Настоящие цены считает бот (DRINKS в bot.py).
-const BLOCK = 12, MIN = 5;
-const FACTORY = { lat: 41.3729019, lon: 69.2611986,
-  google: 'https://maps.app.goo.gl/wFz1qzcHqwc8KyVU6' };
+// Цены только для показа. Если меняете цену в боте (DRINKS в bot.py), меняйте и здесь.
+const BLOCK = 12, MIN_BLOCKS = 5;
+const FACTORY = { lat: 41.3729019, lon: 69.2611986, google: 'https://maps.app.goo.gl/wFz1qzcHqwc8KyVU6' };
 
 const DRINKS = [
-  { name: 'Anor Lemonade',   price: 7301, color: '#7a1f2b', img: 'img/anor.jpg',   vol: { ru: '0,5 л',  uz: '0,5 l' },
+  { name: 'Anor Lemonade',    price: 7301, color: '#7a1f2b', img: 'img/anor.jpg',   vol: { ru: '0,5 л',  uz: '0,5 l' },
     desc: { ru: 'Лимонад с насыщенным вкусом граната.', uz: "To'yingan anor ta'mli limonad." },
     long: { ru: 'Яркий, насыщенный вкус граната. Лучше всего холодным: в жару, за обедом или на семейном столе.', uz: "Anorning yorqin, to'yingan ta'mi. Eng yaxshisi sovuq holda: issiq kunda, tushlikda yoki oilaviy dasturxonda." } },
   { name: "Jo'xori Lemonade", price: 8400, color: '#27407f', img: 'img/joxori.jpg', vol: { ru: '0,45 л', uz: '0,45 l' },
     desc: { ru: 'Необычный лимонад со вкусом сладкой кукурузы.', uz: "Shirin makkajo'xori ta'mli noodatiy limonad." },
     long: { ru: 'Необычный вкус сладкой кукурузы в газированном лимонаде. Напиток, который запоминается и отличается от привычных.', uz: "Gazli limonadda shirin makkajo'xorining noodatiy ta'mi. Esda qoladigan va odatiy ichimliklardan farq qiladigan ichimlik." } },
-  { name: 'Moxito Lemonade', price: 7301, color: '#2f6a2b', img: 'img/moxito.jpg', vol: { ru: '0,5 л',  uz: '0,5 l' },
+  { name: 'Moxito Lemonade',  price: 7301, color: '#2f6a2b', img: 'img/moxito.jpg', vol: { ru: '0,5 л',  uz: '0,5 l' },
     desc: { ru: 'Освежающий мохито с лаймом, мятой и клубникой.', uz: "Laym, yalpiz va qulupnay ta'mli sarin moxito." },
     long: { ru: 'Освежающий мохито с лаймом, мятой и клубникой. Лёгкий, прохладный вкус для жаркого дня и компании друзей.', uz: "Laym, yalpiz va qulupnayli sarin moxito. Issiq kun va do'stlar davrasi uchun yengil, salqin ta'm." } },
-  { name: 'Qovun Lemonade',  price: 7301, color: '#3f5a2a', img: 'img/qovun.jpg',  vol: { ru: '0,45 л', uz: '0,45 l' },
+  { name: 'Qovun Lemonade',   price: 7301, color: '#3f5a2a', img: 'img/qovun.jpg',  vol: { ru: '0,45 л', uz: '0,45 l' },
     desc: { ru: 'Лимонад со вкусом сочной спелой дыни.', uz: "Shirali pishgan qovun ta'mli limonad." },
     long: { ru: 'Вкус сочной спелой дыни в газированном лимонаде. Сладкий летний вкус, который хочется пить холодным.', uz: "Gazli limonadda shirali pishgan qovun ta'mi. Sovuq holda ichgisi keladigan shirin yozgi ta'm." } }
 ];
 
 const I18N = {
   ru: {
-    tagline: 'Газированные лимонады', cur: 'сум',
+    tagline: 'Газированные лимонады', cur: 'сум', back: '← Назад',
+    welcome: 'Добро пожаловать! Выберите раздел:',
+    m: [['🥤', 'Напитки', 'Наши вкусы и фото'], ['💰', 'Цены', 'Цена за банку и за блок'], ['🏭', 'О нас', 'Кто мы и как делаем напитки'],
+        ['💬', 'Связаться с менеджером', 'Позвонить или написать'], ['📍', 'Где нас найти', 'Завод на карте']],
+    perCan: 'за банку', perBlock: 'Блок из 12 банок', more: 'Подробнее',
+    cond: 'Условия',
+    facts: [['Продажа блоками', `1 блок = ${BLOCK} банок. Минимальный заказ — ${MIN_BLOCKS} блоков.`],
+            ['Доставка', 'Ташкент, Юнусабадский район.'], ['Оплата', 'При получении заказа.']],
+    howOrder: 'Чтобы сделать заказ, свяжитесь с менеджером.',
     about: ['<b>Lazzat</b> — газированные лимонады с яркими и необычными вкусами: гранат, кукуруза, мохито с клубникой и спелая дыня.',
             'Мы делаем напитки, которые приятно пить в жару и за столом с друзьями. Работаем с магазинами, кафе и обычными покупателями.'],
-    hDrinks: 'Наши напитки', perCan: 'за банку', perBlock: 'Блок из 12 банок',
-    hWork: 'Как заказать',
-    facts: [['Продажа блоками', '1 блок = 12 банок. Минимальный заказ — 5 блоков.'],
-            ['Доставка', 'Ташкент, Юнусабадский район.'],
-            ['Оплата', 'При получении заказа.']],
-    hFactory: 'Наш завод', addr: 'г. Ташкент, ул. Гулор, 38', google: 'Google Maps', yandex: 'Яндекс Карты',
-    hPhotos: 'Фото', hContacts: 'Связаться с нами', call: '📞 Позвонить', back: '← Назад', more: 'Подробнее'
+    factory: 'Наш завод', addr: 'г. Ташкент, ул. Гулор, 38', photos: 'Фото',
+    google: 'Google Maps', yandex: 'Яндекс Карты', contactBtn: 'Связаться с менеджером',
+    mgr: 'Связаться с менеджером', mgrText: 'Ответим на вопросы и примем заказ.',
+    call: '📞 Позвонить', noContacts: 'Контакты скоро появятся.', where: 'Где нас найти'
   },
   uz: {
-    tagline: 'Gazli limonadlar', cur: "so'm",
+    tagline: 'Gazli limonadlar', cur: "so'm", back: '← Orqaga',
+    welcome: "Xush kelibsiz! Bo'limni tanlang:",
+    m: [['🥤', 'Ichimliklar', "Ta'mlar va suratlar"], ['💰', 'Narxlar', 'Banka va blok narxi'], ['🏭', 'Biz haqimizda', 'Biz kimmiz va qanday tayyorlaymiz'],
+        ['💬', "Menejer bilan bog'lanish", "Qo'ng'iroq qilish yoki yozish"], ['📍', 'Bizni qayerdan topasiz', 'Zavod xaritada']],
+    perCan: 'bankasi', perBlock: '12 dona banka (1 blok)', more: 'Batafsil',
+    cond: 'Shartlar',
+    facts: [['Bloklab sotish', `1 blok = ${BLOCK} dona banka. Minimal buyurtma — ${MIN_BLOCKS} blok.`],
+            ['Yetkazib berish', 'Toshkent, Yunusobod tumani.'], ["To'lov", 'Buyurtmani qabul qilishda.']],
+    howOrder: "Buyurtma berish uchun menejer bilan bog'laning.",
     about: ["<b>Lazzat</b> — yorqin va noodatiy ta'mli gazli limonadlar: anor, makkajo'xori, qulupnayli moxito va pishgan qovun.",
             "Biz issiq kunda ham, do'stlar davrasida ham ichishga yoqimli ichimliklar tayyorlaymiz. Do'konlar, kafelar va oddiy xaridorlar bilan ishlaymiz."],
-    hDrinks: 'Ichimliklarimiz', perCan: 'bankasi', perBlock: '12 dona banka (1 blok)',
-    hWork: 'Qanday buyurtma berish',
-    facts: [['Bloklab sotish', '1 blok = 12 dona banka. Minimal buyurtma — 5 blok.'],
-            ['Yetkazib berish', 'Toshkent, Yunusobod tumani.'],
-            ["To'lov", 'Buyurtmani qabul qilishda.']],
-    hFactory: 'Bizning zavod', addr: "Toshkent shahri, Gulor ko'chasi, 38", google: 'Google Maps', yandex: 'Yandex Xaritalar',
-    hPhotos: 'Suratlar', hContacts: "Biz bilan bog'lanish", call: "📞 Qo'ng'iroq qilish", back: '← Orqaga', more: 'Batafsil'
+    factory: 'Bizning zavod', addr: "Toshkent shahri, Gulor ko'chasi, 38", photos: 'Suratlar',
+    google: 'Google Maps', yandex: 'Yandex Xaritalar', contactBtn: "Menejer bilan bog'lanish",
+    mgr: "Menejer bilan bog'lanish", mgrText: "Savollaringizga javob beramiz va buyurtmani qabul qilamiz.",
+    call: "📞 Qo'ng'iroq qilish", noContacts: "Aloqa ma'lumotlari tez orada qo'shiladi.", where: 'Bizni qayerdan topasiz'
   }
 };
 
 const tg = window.Telegram && window.Telegram.WebApp;
 if (tg) { tg.ready(); tg.expand(); try { tg.setHeaderColor('#15110f'); tg.setBackgroundColor('#15110f'); } catch (e) {} }
 
-/* язык: ?lang=… → сохранённый выбор → язык Telegram → русский */
 function detectLang() {
   const q = new URLSearchParams(location.search).get('lang');
   if (q === 'uz' || q === 'ru') return q;
@@ -184,90 +176,112 @@ let lang = detectLang();
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const safeUrl = u => /^https?:\/\//.test(u) ? u : '';
+const money = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ' + I18N[lang].cur;
+const imgTag = d => `<img src="${d.img}" alt="${esc(d.name)}" onerror="this.parentNode.style.display='none'">`;
 
-function render() {
-  const t = I18N[lang], money = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ' + t.cur;
+/* ---------- навигация: стек экранов ---------- */
+let stack = [{ v: 'home' }];
+const cur = () => stack[stack.length - 1];
+function go(v, i) { stack.push({ v, i }); show(); }
+function back() { if (stack.length > 1) { stack.pop(); show(); } }
+function setBackButton() {
+  try {
+    tg.BackButton.offClick(back);
+    if (stack.length > 1) { tg.BackButton.show(); tg.BackButton.onClick(back); } else tg.BackButton.hide();
+  } catch (e) {}
+}
+
+/* ---------- экраны ---------- */
+const backBtn = t => `<button class="back" data-back>${t.back}</button>`;
+
+function vHome(t) {
+  const act = ['drinks', 'prices', 'about', 'contact', 'where'];
+  return `<p class="welcome">${t.welcome}</p><div class="menu">` +
+    t.m.map((m, k) => `<button class="tile${k === 3 ? ' main' : ''}" data-go="${act[k]}">
+      <span class="ic">${m[0]}</span><span><div class="tt">${m[1]}</div><div class="st">${m[2]}</div></span><span class="ar">›</span></button>`).join('') + '</div>';
+}
+function vDrinks(t) {
+  return backBtn(t) + `<h2 class="sec">${t.m[0][1]}</h2>` + DRINKS.map((d, i) => `
+    <div class="card" data-go="drink" data-i="${i}" style="--accent:${d.color}">
+      <div class="pic">${imgTag(d)}</div>
+      <div class="info"><h3>${esc(d.name)}</h3><div class="vol">${d.vol[lang]}</div>
+        <div class="desc">${d.desc[lang]}</div><div class="more">${t.more} →</div></div>
+    </div>`).join('');
+}
+function vDrink(t, i) {
+  const d = DRINKS[i];
+  return backBtn(t) + `
+    <div class="hero" style="--accent:${d.color}">${imgTag(d)}</div>
+    <div class="dname">${esc(d.name)}</div><div class="vol">${d.vol[lang]}</div>
+    <div class="long">${d.long[lang]}</div>
+    <div class="pbox"><div>${t.perCan}<b>${money(d.price)}</b></div><div>${t.perBlock}<b>${money(d.price * BLOCK)}</b></div></div>`;
+}
+function vPrices(t) {
+  return backBtn(t) + `<h2 class="sec">${t.m[1][1]}</h2>` + DRINKS.map(d => `
+    <div class="prow" style="--accent:${d.color}">
+      <div class="n"><b>${esc(d.name)}</b><span>${d.vol[lang]}</span></div>
+      <div class="p"><b>${money(d.price)}</b> ${t.perCan}<br>${t.perBlock}: <b>${money(d.price * BLOCK)}</b></div>
+    </div>`).join('') +
+    `<h3 class="sub">${t.cond}</h3>` + t.facts.map(f => `<div class="fact"><b>${f[0]}</b>${f[1]}</div>`).join('') +
+    `<p class="note">${t.howOrder}</p><div class="btns"><button class="btn gold" data-go="contact">💬 ${t.contactBtn}</button></div>`;
+}
+function vAbout(t) {
+  const gal = GALLERY.length ? `<h3 class="sub">${t.photos}</h3><div class="gallery">${
+    GALLERY.map(f => `<img src="img/${esc(f)}" alt="" loading="lazy" onerror="this.remove()">`).join('')}</div>` : '';
+  return backBtn(t) + `<h2 class="sec">${t.m[2][1]}</h2><div class="box">${t.about.map(p => `<p>${p}</p>`).join('')}</div>` + gal +
+    `<h3 class="sub">${t.factory}</h3><div class="box"><p><b>${t.addr}</b></p></div>
+     <div class="btns" style="margin-top:12px"><button class="btn" data-go="where">📍 ${t.where}</button></div>`;
+}
+function contactLinks(t) {
+  const out = [];
+  const phone = CONTACT.phone.replace(/[^\d+]/g, '');
+  if (phone) out.push(`<a class="btn gold" href="tel:${phone}">${t.call}</a>`);
+  const n = CONTACT.telegram.trim();
+  const tgUrl = n ? (safeUrl(n) || 'https://t.me/' + n.replace(/^@/, '').replace(/\/+$/, '')) : '';
+  if (tgUrl && !/\s/.test(tgUrl)) out.push(`<a class="btn" href="${esc(tgUrl)}" data-tg>✈️ Telegram</a>`);
+  const g = CONTACT.instagram.trim();
+  const igUrl = g ? (safeUrl(g) || 'https://instagram.com/' + g.replace(/^@/, '').replace(/\/+$/, '')) : '';
+  if (igUrl && !/\s/.test(igUrl)) out.push(`<a class="btn" href="${esc(igUrl)}" target="_blank" rel="noopener">📸 Instagram</a>`);
+  return out;
+}
+function vContact(t) {
+  const links = contactLinks(t);
+  return backBtn(t) + `<h2 class="sec">${t.mgr}</h2><p class="note" style="margin-top:0">${t.mgrText}</p>` +
+    (links.length ? `<div class="btns">${links.join('')}</div>` : `<div class="box">${t.noContacts}</div>`);
+}
+function vWhere(t) {
+  return backBtn(t) + `<h2 class="sec">${t.where}</h2><div class="box"><p><b>${t.factory}</b></p><p>${t.addr}</p></div>
+    <div class="btns" style="margin-top:12px">
+      <a class="btn gold" href="${FACTORY.google}" target="_blank" rel="noopener">📍 ${t.google}</a>
+      <a class="btn" href="https://yandex.com/maps/?pt=${FACTORY.lon},${FACTORY.lat}&z=17&l=map" target="_blank" rel="noopener">📍 ${t.yandex}</a>
+    </div>`;
+}
+
+function show() {
+  const t = I18N[lang], s = cur();
   document.documentElement.lang = lang;
   $('lru').className = lang === 'ru' ? 'on' : ''; $('luz').className = lang === 'uz' ? 'on' : '';
   $('tagline').textContent = t.tagline;
-  $('about').innerHTML = t.about.map(p => `<p>${p}</p>`).join('');
-  $('hDrinks').textContent = t.hDrinks;
-  $('list').innerHTML = DRINKS.map((d, i) => `
-    <div class="card" data-i="${i}" style="--accent:${d.color}">
-      <div class="pic"><img src="${d.img}" alt="${esc(d.name)}" onerror="this.parentNode.style.display='none'"></div>
-      <div class="info">
-        <h3>${esc(d.name)}</h3>
-        <div class="vol">${d.vol[lang]}</div>
-        <div class="desc">${d.desc[lang]}</div>
-        <div class="price">${money(d.price)} <span>${t.perCan}</span><br>
-          <span>${t.perBlock}:</span> ${money(d.price * BLOCK)}</div>
-        <div class="more">${t.more} →</div>
-      </div>
-    </div>`).join('');
-  $('hFactory').textContent = t.hFactory;
-  $('fAddr').textContent = t.addr;
-  $('mGoogle').textContent = '📍 ' + t.google; $('mGoogle').href = FACTORY.google;
-  $('mYandex').textContent = '📍 ' + t.yandex;
-  $('mYandex').href = `https://yandex.com/maps/?pt=${FACTORY.lon},${FACTORY.lat}&z=17&l=map`;
-
-  $('galleryWrap').hidden = GALLERY.length === 0;
-  if (GALLERY.length) {
-    $('hPhotos').textContent = t.hPhotos;
-    $('gallery').innerHTML = GALLERY.map(f => `<img src="img/${esc(f)}" alt="" loading="lazy" onerror="this.remove()">`).join('');
-  }
-
-  const btns = [];
-  const phone = CONTACT.phone.replace(/[^\d+]/g, '');
-  if (phone) btns.push(`<a class="btn" href="tel:${phone}">${t.call}</a>`);
-  const tgName = CONTACT.telegram.trim();
-  const tgUrl = tgName ? (safeUrl(tgName) || 'https://t.me/' + tgName.replace(/^@/, '').replace(/\/+$/, '')) : '';
-  if (tgUrl && !/\s/.test(tgUrl)) btns.push(`<a class="btn" href="${esc(tgUrl)}" data-tg>✈️ Telegram</a>`);
-  const ig = CONTACT.instagram.trim();
-  const igUrl = ig ? (safeUrl(ig) || 'https://instagram.com/' + ig.replace(/^@/, '').replace(/\/+$/, '')) : '';
-  if (igUrl && !/\s/.test(igUrl)) btns.push(`<a class="btn" href="${esc(igUrl)}" target="_blank" rel="noopener">📸 Instagram</a>`);
-  $('contactsWrap').hidden = btns.length === 0;
-  $('hContacts').textContent = t.hContacts;
-  $('contacts').innerHTML = btns.join('');
-
-  }
-
-function showDetail(i) {
-  const d = DRINKS[i], t = I18N[lang], money = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ' + t.cur;
-  $('detail').innerHTML = `
-    <button class="back" id="backBtn">${t.back}</button>
-    <div class="hero" style="--accent:${d.color}"><img src="${d.img}" alt="${esc(d.name)}" onerror="this.parentNode.style.display='none'"></div>
-    <h2>${esc(d.name)}</h2>
-    <div class="vol">${d.vol[lang]}</div>
-    <div class="long">${d.long[lang]}</div>
-    <div class="pbox"><div>${t.perCan}<b>${money(d.price)}</b></div><div>${t.perBlock}<b>${money(d.price * BLOCK)}</b></div></div>`;
-  $('home').hidden = true; $('detail').hidden = false; window.scrollTo(0, 0);
-  $('backBtn').onclick = hideDetail;
-  try { tg.BackButton.show(); tg.BackButton.onClick(hideDetail); } catch (e) {}
+  const views = { home: vHome, drinks: vDrinks, drink: vDrink, prices: vPrices, about: vAbout, contact: vContact, where: vWhere };
+  $('view').innerHTML = views[s.v](t, s.i);
+  window.scrollTo(0, 0);
+  setBackButton();
 }
-function hideDetail() {
-  $('detail').hidden = true; $('home').hidden = false; openIdx = null;
-  try { tg.BackButton.hide(); tg.BackButton.offClick(hideDetail); } catch (e) {}
-}
-let openIdx = null;
-$('list').addEventListener('click', e => {
-  const c = e.target.closest('.card'); if (c) { openIdx = +c.dataset.i; showDetail(openIdx); }
+
+document.addEventListener('click', e => {
+  const tgl = e.target.closest('a[data-tg]');
+  if (tgl && tg && tg.openTelegramLink) { e.preventDefault(); tg.openTelegramLink(tgl.href); return; }
+  if (e.target.closest('[data-back]')) { back(); return; }
+  const g = e.target.closest('[data-go]');
+  if (g) go(g.dataset.go, g.dataset.i !== undefined ? +g.dataset.i : undefined);
 });
-function setLang(l) {
-  lang = l; try { localStorage.setItem('lazzat_lang', l); } catch (e) {}
-  render(); if (openIdx !== null) showDetail(openIdx);
-}
+function setLang(l) { lang = l; try { localStorage.setItem('lazzat_lang', l); } catch (e) {} show(); }
 $('lru').onclick = () => setLang('ru');
 $('luz').onclick = () => setLang('uz');
 $('logo').onerror = function () {
   const f = document.createElement('div'); f.className = 'logo-fallback'; f.textContent = 'L'; this.replaceWith(f);
 };
-// Ссылки на Telegram открываем средствами Telegram, остальные — обычным переходом.
-document.addEventListener('click', e => {
-  const a = e.target.closest('a[data-tg]');
-  if (a && tg && tg.openTelegramLink) { e.preventDefault(); tg.openTelegramLink(a.href); }
-});
-
-render();
+show();
 </script>
 </body>
 </html>
